@@ -8,7 +8,7 @@ def get_first_part_of_name(name):
 	names=name.split("-")
 	firstname=names[0]
 	firstname=firstname[0].upper()+firstname[1:].lower()
-	return f"Bonjour {firstname}"
+	return f"Bonjour, {firstname}"
 
 def get_random_sentence(animals, adjectives, fruits):
 	animal=animals[random.randrange(len(animals))]
@@ -17,7 +17,7 @@ def get_random_sentence(animals, adjectives, fruits):
 	return f"Aujourd’hui, j’ai vu un {animal} s’emparer d’un panier {adjectif} plein de {fruit}."
 
 def format_date(year, month, day, hours, minutes, seconds):
-	return f"{year:04}-{month:02}-{day:02} {hours}:{minutes}:{seconds}"
+	return f"{year:04}-{month:02}-{day:02} {hours:2}:{minutes:2}:{seconds:3}"
 
 def encrypt(text, shift):
 	encrypted_msg=""
