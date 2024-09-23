@@ -28,30 +28,18 @@ def format_bill_items(data):
 
 
 def format_number(number, num_decimal_digits):
-	decimal_part=abs(number) % 1
-	non_decimal_part=int(abs(number))
-	nbr_restant=0
-	chaine_partie_ent=""
-	while nbr_restant >= 1000:
-		nbr_restant=number%1000
-		chaine_partie_ent=str(nbr_restant)+chaine_partie_ent
-		
-	for nb in non_decimal_part:
-		if counter % 3 == 0 and counter != 0 and counter != len(nb):
-			result+=" "
-		result+=nb
-		counter+=1
-	counter=0
-	result+="."
-	for nb in decimal_part:
-		if counter % 3 == 0 and counter != 0 and counter != len(nb):
-			result+=" "
-		result+=nb
-		counter+=1
-	return result
+	
+	while non_decimal_part != 0:
+		chaine_partie_ent=(str(non_decimal_part%1000)*1000)+chaine_partie_ent
+		non_decimal_part=0
+	return chaine_partie_ent
 
 def get_triangle(num_rows):
-	return ""
+	top_border="+"*2
+	for number in range(5):
+		print()
+
+	return top_border
 
 
 if __name__ == "__main__":

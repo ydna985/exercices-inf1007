@@ -43,12 +43,11 @@ def cash(value):
 	ones=reste
 	
 	decimal_value=value%1
-	print(decimal_value)
 	twentifive_cents=round(decimal_value//0.25)
 	decimal_value%=0.25
 	ten_cents=round(decimal_value//0.10)
 	decimal_value%=0.10
-	five_cents=decimal_value//0.05
+	five_cents=round(decimal_value//0.05)
 
 	return (twenties, tens, fives, ones, twentifive_cents, ten_cents, five_cents)
 
