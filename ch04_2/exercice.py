@@ -17,7 +17,7 @@ def get_random_sentence(animals, adjectives, fruits):
 	return f"Aujourd’hui, j’ai vu un {animal} s’emparer d’un panier {adjectif} plein de {fruit}."
 
 def format_date(year, month, day, hours, minutes, seconds):
-	return f"{year:04}-{month:02}-{day:02} {hours:2}:{minutes:2}:{seconds:3}"
+	return f"{year:04}-{month:02}-{day:02} {hours:02}:{minutes:02}:{seconds:06.3f}"
 
 def encrypt(text, shift):
 	encrypted_msg=""

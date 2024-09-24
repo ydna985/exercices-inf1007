@@ -42,12 +42,15 @@ def cash(value):
 	reste%=5
 	ones=reste
 	
-	decimal_value=value%1
-	twentifive_cents=round(decimal_value//0.25)
-	decimal_value%=0.25
-	ten_cents=round(decimal_value//0.10)
-	decimal_value%=0.10
-	five_cents=round(decimal_value//0.05)
+	decimal_value=round((value%1)*100/5, 2)*5
+	twentifive_cents=int(decimal_value//25)
+	decimal_value%=25
+	ten_cents=int(decimal_value//10)
+	decimal_value%=10
+	five_cents=int(decimal_value//5)
+	decimal_value%=5
+	if decimal_value>= 3:
+		five_cents+=1
 
 	return (twenties, tens, fives, ones, twentifive_cents, ten_cents, five_cents)
 
@@ -57,8 +60,8 @@ def format_base(value, base, digit_letters):
 	result = ""
 	abs_value = abs(value)
 	while abs_value != 0:
-		result+=digit_letters[abs_value%16]
-		abs_value=abs_value//16
+		result=digit_letters[abs_value%base]+result
+		abs_value=abs_value//base
 	if value < 0:
 		# TODO: Ne pas oublier d'ajouter '-' devant pour les nombres négatifs.
 		result="-"+result
@@ -69,5 +72,5 @@ if __name__ == "__main__":
 	print(dissipated_power(69, 420))
 	print(orthogonal((1, 1), (-1, 1)))
 	print(point_in_circle([-1, 1], [1, -1], 2))
-	print(cash(137.38))
+	print(cash(0))
 	print(format_base(-420, 16, "0123456789ABCDEF"))

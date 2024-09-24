@@ -52,13 +52,16 @@ def verify_ages(groups: List[List[int]]) -> List[bool]:
         if len(group) > 10 or len(group) <= 3:
             resultat.append(False)
             continue
-        if 25 in group:
+        elif 25 in group:
             resultat.append(True)
             continue
-        if (min(group) < 18) or (50 in group and max(group) > 70):
+        elif (min(group) < 18) or (50 in group and max(group) > 70):
             resultat.append(False)
+        else:
+            resultat.append(True)
 
-    return []
+
+    return resultat
 
 
 def main() -> None:

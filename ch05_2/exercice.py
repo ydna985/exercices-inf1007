@@ -13,25 +13,35 @@ def format_bill_total(data):
 		price_sub_total+=details[INDEX_PRICE]*details[INDEX_QUANTITY]
 		taxe=price_sub_total*0.15
 		total_price=taxe+price_sub_total
-	resultat=f"SOUS TOTAL {price_sub_total:>6.2f}"
-	resultat+=f"TAXES      {taxe:>6.2f}"
-	resultat+=f"TOTAL      {total_price:>6.2f}"
+	
+	resultat=f"SOUS TOTAL {price_sub_total:>10.2f} $\n"
+	resultat+=f"TAXES      {taxe:>10.2f} $\n"
+	resultat+=f"TOTAL      {total_price:>10.2f} $"
 	return resultat
 
 def format_bill_items(data):
 	INDEX_NAME = 0
 	INDEX_QUANTITY = 1
 	INDEX_PRICE = 2
-
-
-	return ""
+	result=""
+	x=0
+	for details in data:
+		if len(details[0]) > x :
+			x=len(details[0])
+	
+	for details in data:
+		result+=f"{details[0]:<{x}} {details[2]:>10} $\n"
+	return result
 
 
 def format_number(number, num_decimal_digits):
-	
-	while non_decimal_part != 0:
-		chaine_partie_ent=(str(non_decimal_part%1000)*1000)+chaine_partie_ent
-		non_decimal_part=0
+	integer=int(number)
+	chaine_partie_ent=""
+	while integer != 0:
+		chaine_partie_ent=(str(integer%1000)*1000)+chaine_partie_ent
+		integer=integer/1000-integer%1000
+		if integer!=0:
+			chaine_partie_ent=" "+chaine_partie_ent
 	return chaine_partie_ent
 
 def get_triangle(num_rows):
