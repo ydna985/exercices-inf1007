@@ -35,13 +35,21 @@ def format_bill_items(data):
 
 
 def format_number(number, num_decimal_digits):
-	integer=int(number)
+	decimals=abs(number)%1
+	entier=str(int(number))
 	chaine_partie_ent=""
-	while integer != 0:
-		chaine_partie_ent=(str(integer%1000)*1000)+chaine_partie_ent
-		integer=integer/1000-integer%1000
-		if integer!=0:
+	#chaine_partie_ent=(str((integer%1000)*1000))+chaine_partie_ent
+	counter=0
+	for i in range(-1,-(len(entier)+1),-1):
+		chaine_partie_ent=entier[i]+ chaine_partie_ent
+		print(chaine_partie_ent)
+		counter+=1
+		print(entier[i+1])
+		if counter == 3 and i != -len(entier) and entier[i-1] != "-":
 			chaine_partie_ent=" "+chaine_partie_ent
+			counter=0
+	chaine_partie_ent=chaine_partie_ent+str(round(decimals,num_decimal_digits))[1:]
+	
 	return chaine_partie_ent
 
 def get_triangle(num_rows):
@@ -64,7 +72,7 @@ if __name__ == "__main__":
 
 	print("\n------------------")
 
-	print(format_number(-1420069.0678, 2))
+	print(format_number(-100.111, 3))
 
 	print("\n------------------")
 
