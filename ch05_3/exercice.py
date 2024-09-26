@@ -5,10 +5,20 @@ import math
 
 
 def get_num_letters(text):
-	return 0
+	counter=0
+	for letter in text:
+		if letter.isalnum() ==True:
+			counter+=1
+	return counter
 
 def get_word_length_histogram(text):
-	return [0]
+	liste_mot=text.split()
+	result=[0]
+	for mot in liste_mot:
+		if len(result) < len(mot):
+			result=result+[0]*(len(mot)-len(result))
+		result[len(mot)-1]+=1
+	return result
 
 def format_histogram(histogram):
 	ROW_CHAR = "*"

@@ -30,7 +30,7 @@ def format_bill_items(data):
 			x=len(details[0])
 	
 	for details in data:
-		result+=f"{details[0]:<{x}} {details[2]:>10} $\n"
+		result+=f"{details[0]:<{x}} {details[2]*details[1]:>10} $\n"
 	return result
 
 
@@ -42,9 +42,7 @@ def format_number(number, num_decimal_digits):
 	counter=0
 	for i in range(-1,-(len(entier)+1),-1):
 		chaine_partie_ent=entier[i]+ chaine_partie_ent
-		print(chaine_partie_ent)
 		counter+=1
-		print(entier[i+1])
 		if counter == 3 and i != -len(entier) and entier[i-1] != "-":
 			chaine_partie_ent=" "+chaine_partie_ent
 			counter=0
@@ -53,11 +51,16 @@ def format_number(number, num_decimal_digits):
 	return chaine_partie_ent
 
 def get_triangle(num_rows):
-	top_border="+"*2
-	for number in range(5):
-		print()
-
-	return top_border
+	BORDERS="+"
+	TRIANGLE="A"
+	top_lower_border=BORDERS*(2*num_rows+1)
+	result=""
+	EMPTY=" "
+	result+=top_lower_border
+	for i in range(num_rows):
+		result+=f"\n{BORDERS}{EMPTY*(num_rows-(1+i))}{TRIANGLE*(2*i+1)}{EMPTY*(num_rows-(1+i))}{BORDERS}"
+	result+="\n"+top_lower_border
+	return result
 
 
 if __name__ == "__main__":
@@ -72,7 +75,7 @@ if __name__ == "__main__":
 
 	print("\n------------------")
 
-	print(format_number(-100.111, 3))
+	print(format_number(-1420069.0678, 2))
 
 	print("\n------------------")
 
