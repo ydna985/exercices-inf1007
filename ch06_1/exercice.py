@@ -24,7 +24,13 @@ def contains_doubles(items: list) -> bool:
 
 def best_grades(student_grades: dict) -> dict:
     # TODO: Retourner un dictionnaire contenant le nom de l'étudiant ayant la meilleure moyenne ainsi que sa moyenne
-    return {}
+    answer_key=""
+    best_grade=0
+    for key,value in student_grades.items():
+        if (sum(value)/len(value)) > best_grade:
+            best_grade=(sum(value)/len(value))
+            answer_key=key
+    return {answer_key:best_grade}
 
 
 def frequence(sentence: str) -> dict:
