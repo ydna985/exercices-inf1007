@@ -15,21 +15,38 @@ def get_word_length_histogram(text):
 	liste_mot=text.split()
 	result=[0]
 	for mot in liste_mot:
-		if len(result) < len(mot):
-			result=result+[0]*(len(mot)-len(result))
-		result[len(mot)-1]+=1
+		lenght_word=get_num_letters(mot)
+		if len(result)-1 < lenght_word:
+			result=result+[0]*(lenght_word-(len(result)-1))
+		result[lenght_word]+=1
 	return result
 
 def format_histogram(histogram):
 	ROW_CHAR = "*"
+	result=""
+	for i in range(len(histogram)):
+		if i == 0:
+			continue
+		result=result+f"{i:>2} {ROW_CHAR*histogram[i]}\n"
 
-	return ""
+	return result
 
 def format_horizontal_histogram(histogram):
 	BLOCK_CHAR = "|"
 	LINE_CHAR = "¯"
+	result=""
+	for i in range(max(histogram),0,-1):
+		for x in range(len(histogram)):
+			if x == 0:
+				continue
+			if histogram[x] >= i:
+				result+=BLOCK_CHAR
+			else:
+				result+=" "
+		result+="\n"	
+	result+=LINE_CHAR*len(histogram)		
 
-	return ""
+	return result
 
 
 if __name__ == "__main__":
