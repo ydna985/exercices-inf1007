@@ -5,9 +5,11 @@
 def order(values: list = None) -> list:
     if values is None:
         # TODO: demander les valeurs ici
-        pass
-
-    return []
+        values=[]
+        while len(values) < 3:
+            values.append(input("Enter une valeurs: "))
+    values.sort()
+    return values
 
 
 def anagrams(words: list = None) -> bool:
@@ -36,8 +38,14 @@ def best_grades(student_grades: dict) -> dict:
 def frequence(sentence: str) -> dict:
     # TODO: Afficher les lettres les plus fréquentes
     #       Retourner le tableau de lettres
-
-    return {}
+    dict={}
+    for letter in sentence:
+        dict[letter]=sentence.count(letter)
+    sorted_key=sorted(dict, key=dict.__getitem__, reverse =True)
+    for key in sorted_key:
+        if dict[key] > 5:
+            print(f"plus de 5 fois pour {key}")
+    return dict
 
 
 def get_recipes():
