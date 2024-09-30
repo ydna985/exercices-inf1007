@@ -15,12 +15,18 @@ def order(values: list = None) -> list:
 def anagrams(words: list = None) -> bool:
     if words is None:
         # TODO: demander les mots ici
-        pass
+        first_word=input("What is the first word: ")
+        second_word=input("What is the second word: ")
+        if first_word[::-1].upper() == second_word.upper():
+            return True
 
     return False
 
 
 def contains_doubles(items: list) -> bool:
+    ensemble=set(items)
+    if len(ensemble) != len(items):
+        return True
     return False
 
 
@@ -50,12 +56,30 @@ def frequence(sentence: str) -> dict:
 
 def get_recipes():
     # TODO: Demander le nom d'une recette, puis ses ingredients et enregistrer dans une structure de données
-    pass
+    answer="y"
+    recipe_dictionary={}
+    while answer =="y":
+        recepi_name=input("What is the name of the recipe: ")
+        ingredients=input("Please name the ingredient by separating them with a comma: ").split(",")
+        recipe_dictionary[recepi_name]=ingredients
+        answer=input("Do you want to add another recipe(y/n): ")
+    print(recipe_dictionary)
+    return recipe_dictionary
+
+
+
 
 
 def print_recipe(ingredients) -> None:
     # TODO: Demander le nom d'une recette, puis l'afficher si elle existe
-    pass
+    answer="y"
+    while answer =="y":
+        recipe_wanted=input("What is the name of the recipe you want to see: ")
+        if (recipe_wanted in ingredients) == True:
+            print(f"Ingredients for {recipe_wanted} are: {ingredients[recipe_wanted]}")
+        else:
+            print("It looks we don't have this recipe in our database")
+        answer=input("Do you want to search up another recipe(y/n): ")
 
 
 def main() -> None:
