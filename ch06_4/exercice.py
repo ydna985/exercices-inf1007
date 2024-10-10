@@ -7,19 +7,21 @@ import itertools
 
 
 def get_even_keys(dictionary):
-	return {}
+	return {key for key in dictionary if key % 2 == 0}
 
 def join_dictionaries(dictionaries):
-	return {}
+	answer=dictionaries[0]
+	answer.update(dictionaries[1])
+	return answer
 
 def dictionary_from_lists(keys, values):
-	return {}
+	return dict(zip(keys, values))
 
 def get_greatest_values(dictionnary, num_values):
-	return []
+	return sorted([value for key, value in dictionnary.items()], reverse=True)[:num_values]
 
 def get_sum_values_from_key(dictionnaries, key):
-	return 0
+	return sum([value for dic in dictionnaries for a, value in dic.items() if a == key])
 
 
 if __name__ == "__main__":
