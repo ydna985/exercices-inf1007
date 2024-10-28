@@ -5,7 +5,7 @@ from collections import deque
 
 
 def get_fibonacci_number(TODO):
-	pass
+	return [0,1].append()
 
 def get_fibonacci_sequence(TODO):
 	pass

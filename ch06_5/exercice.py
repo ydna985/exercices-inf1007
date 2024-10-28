@@ -3,7 +3,14 @@
 
 
 def check_brackets(text, brackets):
-	return False
+	brackets=
+	bracks=""
+	for letter in text:
+		if letter in brackets:
+			bracks+=letter
+	
+	print(bracks, "wwwww", bracks [-1::-1])
+	return bracks == bracks [-1::]
 
 def remove_comments(full_text, comment_start, comment_end):
 	return ""
