@@ -3,14 +3,33 @@
 
 
 def check_brackets(text, brackets):
-	brackets=
-	bracks=""
-	for letter in text:
-		if letter in brackets:
-			bracks+=letter
+	ouverture=[braket for index, braket in enumerate(brackets) if index%2 == 0]
+	fermeture=[braket for index, braket in enumerate(brackets) if index%2 != 0]
+	print(ouverture,"----",fermeture)
+	# bracks=""
+	# for letter in text:
+	# 	if letter in brackets:
+	# 		bracks+=letter
+
+	# precedent_closure_index=len(bracks)-1
+	# bracks_copy=bracks
 	
-	print(bracks, "wwwww", bracks [-1::-1])
-	return bracks == bracks [-1::]
+	# for index, brack in enumerate(bracks):
+	# 	if index == precedent_closure_index:
+	# 		precedent_closure_index=len(bracks)-1
+	# 		continue
+	# 	if brackets.index(brack) % 2 == 0:
+	# 		brack_closure_index=brackets.index(brack)+1
+	# 		if brackets[brack_closure_index] in bracks_copy:
+	# 			if bracks_copy.rfind(brackets[brack_closure_index]) > precedent_closure_index:
+	# 				return False
+	# 			precedent_closure_index=bracks_copy.rfind(brackets[brack_closure_index])
+	# 			bracks_copy=bracks_copy[:precedent_closure_index]+bracks_copy[precedent_closure_index+1:]
+	# 		else:
+	# 			return False
+	# 	else:
+	# 		return False
+	# return True
 
 def remove_comments(full_text, comment_start, comment_end):
 	return ""

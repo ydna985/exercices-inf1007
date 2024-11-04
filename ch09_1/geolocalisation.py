@@ -61,10 +61,12 @@ def show_green_in_png(im):
     print(pixels.shape)
     print(pixels.min(), pixels.max())
     green = is_green(pixels)
-
+    print(green)
     # Créer l'image de couverture végétale et changer en uint8
     out = (green[:, :, np.newaxis] * np.array([0, 255, 0])[np.newaxis, np.newaxis, :]).astype(np.uint8)
-
+    #print(np.info(np.array([0, 255, 0])[np.newaxis, np.newaxis, :]))
+    #print((np.array([0, 255, 0])[np.newaxis, np.newaxis, :])[:,:,1])
+    print(out[:,:,1])
     buffer = BytesIO()
     result = imageio.imwrite(buffer, out, format='png')
     return buffer.getvalue()
@@ -100,7 +102,7 @@ if __name__ == "__main__":
     #display_image(show_green_in_png(map_png))
     print(f'La couverture végétale de {ville} est {pourcentage_vegetal(map_png)} %')
     display_images([map_png, map_at(*montreal_location, satellite=False), show_green_in_png(map_png)])
-
+    #print(np.array([0, 255, 0])[np.newaxis, np.newaxis, :].astype(np.uint8))
     ###############################################################################################################################################################
     # Calcul de la couverture végétale entre Montréal et Québec et entre Montréal et Sherbrooke
     # Création de la figure
