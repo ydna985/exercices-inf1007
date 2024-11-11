@@ -33,7 +33,6 @@ def format_bill_items(data):
 		result+=f"{details[0]:<{x}} {details[2]*details[1]:>10} $\n"
 	return result
 
-
 def format_number(number, num_decimal_digits):
 	decimals=abs(number)%1
 	entier=str(int(number))
