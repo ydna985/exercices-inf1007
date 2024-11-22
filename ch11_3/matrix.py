@@ -61,7 +61,7 @@ class Matrix:
 		return self.__data
 
 	# TODO: Accès à un élément en lecture
-	def TODO(TODO):
+	def __getitem__(self, indexes):
 		"""
 		Indexation rangée-major
 
@@ -69,9 +69,10 @@ class Matrix:
 		"""
 		self._check_indexes(indexes)
 		# TODO: Retourner la valeur
+		return self.data[indexes[0]*self.width+indexes[1]]
 
 	# TODO: Affectation à un élément
-	def TODO(TODO):
+	def __setitem__(self, indexes, value):
 		"""
 		Indexation rangée-major
 
@@ -79,6 +80,7 @@ class Matrix:
 		"""
 		self._check_indexes(indexes)
 		# TODO: L'affectation
+		self.data[indexes[0]*self.width+indexes[1]]=value
 
 	def __len__(self):
 		"""
@@ -87,19 +89,24 @@ class Matrix:
 		return self.height * self.width
 
 	# TODO: Représentation affichable (conversion pour print)
-	def TODO(TODO):
+	def __str__(self):
 		# TODO: Chaque rangée est sur une ligne, avec chaque élément séparé d'un espace.
-		pass
+		return format(self, "")
+
 
 	# TODO: Représentation officielle
-	def TODO(TODO):
+	def __repr__(self):
 		# TODO: une string qui représente une expression pour construire l'objet.
-		pass
+		return f"Matrix({self.height},{self.width},{self.data.__repr__()})"
 
 	# TODO: String formatée
-	def TODO(TODO):
+	def __format__(self, format_spec):
 		# TODO: On veut pouvoir dir comment chaque élément doit être formaté en passant la spécification de formatage qu'on passerait à `format()`
-		pass
+		lines=[]
+		for i in range(self.height):
+			line= " ".join([format(self[i,j],format_spec) for j in range(self.width)])
+			lines.append(line)
+		return "\n".join(lines)
 
 	def clone(self):
 		return Matrix(self.height, self.width, self.data)
@@ -122,23 +129,30 @@ class Matrix:
 		return self.copy()
 
 	# TODO: Négation
-	def TODO(TODO):
-		pass
+	def __neg__(self):
+		return Matrix(self.height, self.width, [-e for e in self.data])
 
 	# TODO: Addition
-	def TODO(TODO):
+	def __add__(self,other):
 		# TODO: D'abord vérifier que les opérandes ont les mêmes dimensions. Sinon, on lève un IncompatibleOperandsError.
 		# TODO: Retourner le résultat de l'addition
-		pass
+		if not self.has_same_dimensions(other):
+			raise IncompatibleOperandsError("Matrix not same size")
+		#for i in range(len(self)):
+			
+		return Matrix(self.height,self.width, [self.data[i]+other.data[i] for i in range(len(self))])
+		
 	
 	# TODO: Soustraction (n'oubliez pas qu'on a déjà l'opérateur de négation et d'addition)
-	def TODO(TODO):
-		pass
+	def __sub__(self, other):
+		return self + -other
 	
 	# TODO: Multiplication matricielle/scalaire
-	def TODO(TODO):
+	def __mul__(self, other):
 		if isinstance(other, Matrix):
 			# TODO: D'abord vérifier que les opérandes on des dimensions compatibles. Sinon on lève un IncompatibleOperandsError.
+			# if self.height != self.width:
+			# 	raise IncompatibleOperandsError("Matrix not same size")
 			# TODO: Multiplication matricielle.
 			# Rappel de l'algorithme simple pour C = A * B, où A, B sont matrices compatibles (hauteur_A = largeur_B)
 			# C = Matrice(hauteur_A, largeur_B)
@@ -146,22 +160,34 @@ class Matrix:
 				# Pour j dans [0, largeur_C[
 					# Pour k dans [0, largeur_A[
 						# C(i, j) = A(i, k) * B(k, j)
-			pass
+			result=Matrix(self.height,other.width)
+			for i in range(result.height):
+				for j in range(result.width):
+					for k in range(other.width):
+						result[i,j]=self[i,k]*other[k,j]
+				return result
 		elif isinstance(other, numbers.Number):
 			# TODO: Multiplication scalaire.
-			pass
+			return Matrix(self.height, self.width, [e*10 for e in self.data])
 		else:
 			raise TypeError(type(other))
 
 	# TODO: Multiplication scalaire avec le scalaire à gauche
-	def TODO(TODO):
-		pass
+	def __rmul__(self, other):
+		return self*other
 
 	def __abs__(self):
 		return Matrix(self.height, self.width, [abs(e) for e in self.data])
 
 	# TODO: Égalité entre deux matrices
-
+	def __eq__(self, other):
+		return self is other or (self.height, self.width, self.data) == (other.height, other.width, other.data)
 	# TODO: Méthode de classe identity qui crée une matrice identité
+	@classmethod
+	def identity(cls,width):
+		result=cls(width,width)
+		for i in range(width):
+			result[i,i]=1.0
+		return result
 	
 
