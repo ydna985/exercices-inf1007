@@ -1,5 +1,5 @@
 """
-Chapitre 11.2
+Chapitre 11: Surcharge d'opérateurs
 """
 
 import numbers
@@ -144,8 +144,8 @@ class Matrix:
 			# C = Matrice(hauteur_A, largeur_B)
 			# Pour i dans [0, hauteur_C[
 				# Pour j dans [0, largeur_C[
-					# Pour k dans [0, largeur_A[
-						# C(i, j) = A(i, k) * B(k, j)
+					# Pour k dans [0, largeur_B[
+						# C(i, j) += A(i, k) * B(k, j)
 			pass
 		elif isinstance(other, numbers.Number):
 			# TODO: Multiplication scalaire.
